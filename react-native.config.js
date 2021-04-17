@@ -1,7 +1,3 @@
 module.exports = {
-    "rnpm": {
-        "assets": [
-          "./assets/Fonts/"
-        ]
-      }
+    assets: ['./assets/Fonts']
   };

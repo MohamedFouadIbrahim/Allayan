@@ -9,7 +9,10 @@ export enum httpStatusCode {
 
 export const DEFAULT_ROOT_URL_DEV = 'https://fakestoreapi.com'
 
-const HTTP_REQUEST = (method: Method, endpoint: string, post_data: object | null, onSuccess?: (res: AxiosResponse) => void, onFailure?: (err: AxiosError | AxiosResponse) => void) => {
+export type onSuccessType = (res: AxiosResponse) => void;
+export type onFailureType = (err: AxiosError | AxiosResponse) => void
+
+const HTTP_REQUEST = (method: Method, endpoint: string, post_data: object | null, onSuccess?: onSuccessType, onFailure?: onFailureType) => {
 
     axios({ method, url: `${DEFAULT_ROOT_URL_DEV}/${endpoint}`, data: post_data })
         .then(function (response) {
@@ -23,15 +26,15 @@ const HTTP_REQUEST = (method: Method, endpoint: string, post_data: object | null
         });
 }
 
-export const POST = (endpoint: string, post_data: object, onSuccess?: (res: AxiosResponse) => void, onFailure?: (err: AxiosError | AxiosResponse) => void) => {
+export const POST = (endpoint: string, post_data: object, onSuccess?: onSuccessType, onFailure?: onFailureType) => {
     return HTTP_REQUEST("post", endpoint, post_data, onSuccess, onFailure);
 }
 
-export const GET = (endpoint: string, onSuccess?: (res: AxiosResponse) => void, onFailure?: (err: AxiosError | AxiosResponse) => void) => {
+export const GET = (endpoint: string, onSuccess?: onSuccessType, onFailure?: onFailureType) => {
     return HTTP_REQUEST("get", endpoint, null, onSuccess, onFailure);
 }
 
-export const DELETE = (endpoint: string, onSuccess?: (res: AxiosResponse) => void, onFailure?: (err: AxiosError | AxiosResponse) => void) => {
+export const DELETE = (endpoint: string, onSuccess?: onSuccessType, onFailure?: onFailureType) => {
     return HTTP_REQUEST("delete", endpoint, null, onSuccess, onFailure);
 }
 

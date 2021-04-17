@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import LazyContainer from '../../components/LazyContainer';
+import { getAllCategories } from '../../services/Categories';
+import { categoriesType } from '../../types/API';
 
 interface IHomeProps {
 
@@ -8,11 +9,17 @@ interface IHomeProps {
 
 const Home: React.FC<IHomeProps> = () => {
 
+    const [categories, setCategories] = useState<categoriesType>([])
+
+    useEffect(() => {
+
+        getAllCategories(res => { setCategories(res.data) })
+
+    }, [])
+
     return (
         <LazyContainer style={{ justifyContent: 'center', alignItems: 'center' }} >
-            <Text style={{ fontFamily: 'Lato-Regular' }} >
-                Home
-            </Text>
+
         </LazyContainer>
     )
 }

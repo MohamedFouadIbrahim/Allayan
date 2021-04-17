@@ -7,10 +7,10 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps> = () => {
-    
+
     return (
         <LazyContainer style={{ justifyContent: 'center', alignItems: 'center' }} >
-            <Text>
+            <Text style={{ fontFamily: 'Lato-Regular' }} >
                 Home
             </Text>
         </LazyContainer>

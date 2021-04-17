@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Image } from 'react-native';
-import { Dimensions, ListRenderItemInfo, StyleSheet, Text } from 'react-native';
-import { ListRenderItem, useWindowDimensions, View } from 'react-native';
+import { ListRenderItemInfo, ScrollView, StyleSheet, View } from 'react-native';
 import CustomImage from '../../components/CustomImage';
 import HorizontalSwiper from '../../components/HorizontalSwiper';
 import LazyContainer from '../../components/LazyContainer';
 import { screenWidth } from '../../constants/Page';
 import { getAllCategories } from '../../services/Categories';
-import { categoriesType } from '../../types/API';
+import { ICategory } from '../../types/API';
+import CategoriesList from './CategoriesList';
 
 interface IHomeProps {
 
@@ -15,28 +14,28 @@ interface IHomeProps {
 
 const Home: React.FC<IHomeProps> = () => {
 
-    const [categories, setCategories] = useState<categoriesType>([])
+    const [categories, setCategories] = useState<ICategory[]>([])
 
-    const [banners, setBanners] = useState<any[]>([
-        require('../../assets/Images/1.jpg'),
-        require('../../assets/Images/2.jpg'),
-        require('../../assets/Images/3.jpg'),
+    const [banners, setBanners] = useState<string[]>([
+        'https://i.picsum.photos/id/1023/3955/2094.jpg?hmac=AW_7mARdoPWuI7sr6SG8t-2fScyyewuNscwMWtQRawU',
+        'https://i.picsum.photos/id/1024/1920/1280.jpg?hmac=-PIpG7j_fRwN8Qtfnsc3M8-kC3yb0XYOBfVzlPSuVII',
+        'https://i.picsum.photos/id/1021/2048/1206.jpg?hmac=fqT2NWHx783Pily1V_39ug_GFH1A4GlbmOMu8NWB3Ts',
     ])
 
     useEffect(() => {
 
-        getAllCategories(res => { setCategories(res.data) })
+        getAllCategories(Categories => { setCategories(Categories) })
 
     }, [])
 
-    const renderBannerItem = ({ item, index }: ListRenderItemInfo<any>) => (
+    const renderBannerItem = ({ item, index }: ListRenderItemInfo<string>) => (
         <View style={styles.cardContainer}>
             <View
                 style={{
                     overflow: 'hidden',
                 }}>
-                 <CustomImage
-                    source={item}
+                <CustomImage
+                    source={{ uri: item }}
                     style={{
                         width: screenWidth,
                         height: screenWidth / 1.77,
@@ -46,7 +45,7 @@ const Home: React.FC<IHomeProps> = () => {
             </View>
         </View>
     )
-    
+
     return (
         <LazyContainer>
 
@@ -56,6 +55,11 @@ const Home: React.FC<IHomeProps> = () => {
                 intervalValue={10000}
                 renderItem={renderBannerItem}
             />
+
+            <CategoriesList
+                categories={categories}
+            />
+
         </LazyContainer>
     )
 }

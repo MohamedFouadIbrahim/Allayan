@@ -1,3 +1,4 @@
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { ListRenderItemInfo, StyleSheet, View } from 'react-native';
 import CustomHeader from '../../components/CustomHeader';
@@ -7,14 +8,16 @@ import LazyContainer from '../../components/LazyContainer';
 import { screenWidth } from '../../constants/Page';
 import { getAllCategories } from '../../services/Categories';
 import { ICategory } from '../../types/API';
+import { CategoriesStacParamList, HomeStackParamList, MainTabBarParamList } from '../../types/Navigation';
 import CategoriesList from './CategoriesList';
 
 interface IHomeProps {
-
+    navigation?: StackNavigationProp<HomeStackParamList ,'Home'>
 }
 
-const Home: React.FC<IHomeProps> = () => {
+const Home: React.FC<IHomeProps> = (props) => {
 
+    // console.log('props', props)
     const [categories, setCategories] = useState<ICategory[]>([])
 
     const [banners, setBanners] = useState<string[]>([
@@ -61,6 +64,7 @@ const Home: React.FC<IHomeProps> = () => {
 
             <CategoriesList
                 categories={categories}
+                navigation={props.navigation}
             />
 
         </LazyContainer>

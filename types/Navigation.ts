@@ -1,15 +1,24 @@
+import { ICategory } from "./API"
 
-export type CategoriesStacType = {
-    Categories: undefined,
-
+export type CategoriesStacParamList = {
+    Categories: undefined
 }
 
-export type HomeStacType = {
-    Home: undefined
+export type ProductsStacParamList = {
+    Products: {
+        category: ICategory | null
+    },
+    Product: {
+        id: string
+    }
 }
 
-export type MainTabBarType = {
+export type HomeStackParamList = {
+    Home: undefined,
+    Categories: CategoriesStacParamList,
+    Products: ProductsStacParamList
+}
+
+export type MainTabBarParamList = {
     HomeTab: undefined
-  }
-
-  
+}

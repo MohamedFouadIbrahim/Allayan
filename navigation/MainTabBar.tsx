@@ -4,10 +4,10 @@ import { Text } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { blackColor, mainColor } from '../constants/Colors';
 import Fonts from '../constants/Fonts';
-import { MainTabBarType } from '../types/Navigation';
+import { MainTabBarParamList } from '../types/Navigation';
 import { HomeStack } from './Stacks';
 
-const TabNavigator = createBottomTabNavigator<MainTabBarType>();
+const TabNavigator = createBottomTabNavigator<MainTabBarParamList>();
 
 export const MainTabBar = () => {
 

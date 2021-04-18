@@ -1,13 +1,19 @@
+import { ParamListBase } from '@react-navigation/routers';
+import { StackNavigationProp } from '@react-navigation/stack';
 import * as React from 'react';
-import { FlatList, ListRenderItemInfo, StyleSheet, Text } from 'react-native';
+import { FlatList, ListRenderItemInfo, StyleSheet, Text, ViewStyle } from 'react-native';
 import CategoryCard from '../../components/CategoryCard';
 import { blackColor } from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 import { PagePadding } from '../../constants/Page';
 import { ICategory } from '../../types/API';
+import { CategoriesStacParamList } from '../../types/Navigation';
 
 interface ICategoriesListProps {
-    categories: ICategory[]
+    categories: ICategory[],
+    navigation?: StackNavigationProp<ParamListBase, string>,
+    hideTitle?: boolean,
+    style?: ViewStyle
 }
 
 const CategoriesList: React.FC<ICategoriesListProps> = (props) => {
@@ -18,14 +24,24 @@ const CategoriesList: React.FC<ICategoriesListProps> = (props) => {
 
     const renderCategory = ({ item, index }: ListRenderItemInfo<ICategory>) => (
         <CategoryCard
-            // navigation={this.props.navigation}
+            navigation={props.navigation}
             category={item}
         />
     )
 
+
+    const ListHeaderComponent = () => {
+        if (props.hideTitle) {
+            return {}
+        }
+
+        return {
+            ListHeaderComponent: () => <Text style={styles.listHeaderText}>{'Categories'}</Text>
+        }
+    }
+
     return (
         <FlatList
-            ListHeaderComponent={() => <Text style={styles.listHeaderText}>{'Categories'}</Text>}
             keyExtractor={(item, index) => index.toString()}
             data={categories}
             numColumns={2}
@@ -33,8 +49,10 @@ const CategoriesList: React.FC<ICategoriesListProps> = (props) => {
             showsHorizontalScrollIndicator={false}
             renderItem={renderCategory}
             contentContainerStyle={{
-                paddingHorizontal: PagePadding
+                paddingHorizontal: PagePadding,
+                ...props.style
             }}
+            {...ListHeaderComponent()}
         />
     )
 };

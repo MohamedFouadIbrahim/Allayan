@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Image,
@@ -28,6 +29,8 @@ const CustomHeader: React.FC<ICustomHeaderProps> = (props) => {
 
   } = props
 
+  const navigation = useNavigation()
+
   return (
     <View >
 
@@ -38,11 +41,14 @@ const CustomHeader: React.FC<ICustomHeaderProps> = (props) => {
           props.back && Platform.OS == 'android' && { paddingBottom: 0, paddingLeft: 0 },
         ]}
         onLayout={props.onLayout}
-       >
+      >
 
         {props.back && (
           <TouchableOpacity
-            onPress={() => props.onBack && props.onBack()}
+            onPress={() => {
+              navigation.goBack()
+              props.onBack && props.onBack()
+            }}
             style={{ flex: 0.2 }}
           >
             <Ionicons name='arrow-back' size={25} color={mainColor} />

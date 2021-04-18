@@ -1,3 +1,5 @@
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import {
     StyleSheet,
@@ -13,7 +15,8 @@ import CustomImage from '../CustomImage';
 
 
 interface ICategoryCardProps {
-    category: ICategory
+    category: ICategory,
+    navigation?: StackNavigationProp<ParamListBase, string>
 }
 
 const CategoryCard: React.FC<ICategoryCardProps> = (props) => {
@@ -22,10 +25,21 @@ const CategoryCard: React.FC<ICategoryCardProps> = (props) => {
         category,
     } = props;
 
+    const navigation = useNavigation()
+
     return (
         <TouchableOpacity
-            onPress={() => { }}
-            style={[styles.serviceCatCardContainer]}>
+            onPress={() => {
+                // if (category.hasChildren)
+                //{ screen: 'Settings' }
+
+                // Products
+                props.navigation?.navigate('Products', { screen: 'Products', params: { category } })
+            }}
+
+            style={[styles.serviceCatCardContainer]}
+
+        >
             <CustomImage
                 source={{ uri: category.images![Math.floor(Math.random() * 4)] }}
                 fallback

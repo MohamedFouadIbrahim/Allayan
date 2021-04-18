@@ -1,5 +1,5 @@
 import { ParamListBase } from '@react-navigation/routers';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 import { FlatList, ListRenderItemInfo, StyleSheet, Text, ViewStyle } from 'react-native';
 import CategoryCard from '../../components/CategoryCard';
@@ -7,11 +7,9 @@ import { blackColor } from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 import { PagePadding } from '../../constants/Page';
 import { ICategory } from '../../types/API';
-import { CategoriesStacParamList } from '../../types/Navigation';
 
-interface ICategoriesListProps {
+interface ICategoriesListProps extends StackScreenProps<ParamListBase, string> {
     categories: ICategory[],
-    navigation?: StackNavigationProp<ParamListBase, string>,
     hideTitle?: boolean,
     style?: ViewStyle
 }

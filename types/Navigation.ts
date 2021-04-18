@@ -1,7 +1,9 @@
 import { ICategory } from "./API"
 
 export type CategoriesStacParamList = {
-    Categories: undefined
+    Categories: {
+        category: ICategory | null
+    }
 }
 
 export type ProductsStacParamList = {

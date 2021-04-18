@@ -1,4 +1,4 @@
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { ParamListBase } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import {
@@ -25,16 +25,14 @@ const CategoryCard: React.FC<ICategoryCardProps> = (props) => {
         category,
     } = props;
 
-    const navigation = useNavigation()
-
     return (
         <TouchableOpacity
             onPress={() => {
-                // if (category.hasChildren)
-                //{ screen: 'Settings' }
-
-                // Products
-                props.navigation?.navigate('Products', { screen: 'Products', params: { category } })
+                if (category.hasChildren) {
+                    props.navigation?.push('Categories', { screen: 'Categories', params: { category } })
+                } else {
+                    props.navigation?.push('Products', { screen: 'Products', params: { category } })
+                }
             }}
 
             style={[styles.serviceCatCardContainer]}

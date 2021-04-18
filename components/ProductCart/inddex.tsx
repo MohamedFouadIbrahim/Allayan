@@ -12,64 +12,12 @@ import { normalText, secondColor } from '../../constants/Colors';
 import { screenWidth } from '../../constants/Page';
 import { IProduct } from '../../types/API';
 import AddToCartButtons from '../AddToCartButtons';
+import WishListIcon from '../WishListIcon';
 
-
-//ItemPackagingPack
-/**
- * 
- * [{"AddDate": null,
- *  "AddUser": null,
- *  "Alternative": false,
- *  "AvailabilityOnlineID": null,
- *  "BrandID": null,
- *  "BrandName": null,
- *  "BrandsName": "", 
- * "CategoryID": 14,
- *  "CategoryName": null,
- *  "Description": "LambWeston Chilli Cheese Nuggets 6x1 kg",
- *  "EditDate": null,
- *  "EditUser": null,
- *  "Images": "~/FilesUploads/Products_Images/147-18055.JPG",
- *  "IsApprove": null,
- *  "IsBestSellers": false,
- *  "IsHotDeals": false,
- *  "IsNewArrivals": false,
- *  "IsRecentlyAdded": false,
- *  "ItemNo": "147-18055",
- *  "ItemPackagingPack": "Crt6", 
- * "MarketPlaceID": null,
- *  "MasterItemID": 1432,
- *  "MinimumQTY": 6,
- *  "Name": "LambWeston Chilli Cheese Nuggets 6x1 kg",
- *  "ProductsImages": null,
- *  "Publish": false, 
- * "Returnable": false,
- *  "SellerName": null,
- *  "ShippingFee": false,
- *  "SoldPrice": 2, 
- * "SubBrandID": 55,
- *  "SubBrandName": null,
- *  "SubCategoryID": 26,
- *  "SubCategoryName": null,
- *  "SuppliersName": null,
- *  "SuppliersNameString": null,
- *  "TaxAmountID": 9,
- *  "TaxAmountName": null,
- *  "UDF1": null,
- *  "UDF2": null,
- *  "UDF3": null,
- *  "UnitID": 34,
- *  "UnitName": null,
- *  "UnitPrice": 0,
- *  "UnitValue": null,
- *  "WarehouseID": null,
- *  "WarehouseName": null,
- *  "Weight": 1}]
- */
 
 interface IProductCartProps {
     product: IProduct,
-    isLastItem:boolean,
+    isLastItem: boolean,
     index: string,
     navigation?: StackNavigationProp<ParamListBase, string>
 }
@@ -114,33 +62,23 @@ const ProductCart: React.FC<IProductCartProps> = (props) => {
 
                 <View style={styles.row}>
                     <Text style={styles.priceStyle}>
-                        {product.price + '$'}
+                        {`${product.price}  $`}
                     </Text>
                 </View>
 
                 <AddToCartButtons
                     product={product}
-                    // addType={1}
-                    // changeAddType={(type: any) => {
-                    //     // this.setState({
-                    //     //     addType: type,
-                    //     // });
-                    // }}
                 />
+
             </View>
 
-            {/* <TouchableOpacity style={{}} onPress={() => { }}>
-                    <WishListIcon
-                        product={product}
-                        user={this.props.user}
-                        selected={this.props.wishlistItems.find((x) => x.MasterItemID == product.MasterItemID)}
-                        // selected={false}
-                        onAddFavourite={() => {
-                            // this.props.onAddFavourite && this.props.onAddFavourite();
-                        }}
-                    />
-                </TouchableOpacity>
-                 */}
+            <TouchableOpacity style={{}} onPress={() => { }}>
+                <WishListIcon
+                    product={product}
+                    selected={false}
+                />
+            </TouchableOpacity>
+
 
         </TouchableOpacity>
     );
@@ -197,6 +135,7 @@ const styles = StyleSheet.create({
         // fontFamily: fonts.cairoBold,
         color: normalText,
         lineHeight: 27,
+        paddingHorizontal:5
     },
     prodImg: {
         width: screenWidth * 0.3,

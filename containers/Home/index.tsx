@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ListRenderItemInfo, ScrollView, StyleSheet, View } from 'react-native';
+import { ListRenderItemInfo, StyleSheet, View } from 'react-native';
+import CustomHeader from '../../components/CustomHeader';
 import CustomImage from '../../components/CustomImage';
 import HorizontalSwiper from '../../components/HorizontalSwiper';
 import LazyContainer from '../../components/LazyContainer';
@@ -48,6 +49,8 @@ const Home: React.FC<IHomeProps> = () => {
 
     return (
         <LazyContainer>
+
+            <CustomHeader logo  />
 
             <HorizontalSwiper
                 data={banners}

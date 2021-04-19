@@ -33,7 +33,7 @@ const Products: React.FC<IProductsProps> = (props) => {
                 index={String(index)}
                 product={item}
                 isLastItem={products.length == index + 1}
-                navigation={props.navigation}
+                {...props}
             />
         )
     }
@@ -41,6 +41,7 @@ const Products: React.FC<IProductsProps> = (props) => {
         <LazyContainer>
 
             <CustomHeader back logo />
+
             <FlatList
                 data={products}
                 renderItem={renderProduct}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, TouchableOpacityProps } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { IProduct } from '../../types/API';
 
-interface IWishListIcon {
+interface IWishListIcon extends TouchableOpacityProps {
   product: IProduct,
   selected: boolean,
   onAddFavourite?: () => void
@@ -11,7 +11,7 @@ interface IWishListIcon {
 
 const WishListIcon: React.FC<IWishListIcon> = (props) => {
 
-  const { product, selected, onAddFavourite } = props;
+  const { product, selected, onAddFavourite, style, ...restProps } = props;
 
   const addToWishList = () => {
 
@@ -19,7 +19,7 @@ const WishListIcon: React.FC<IWishListIcon> = (props) => {
   }
   return (
     <TouchableOpacity
-      style={styles.favouriteBtn}
+      style={[styles.favouriteBtn, style]}
       onPress={() => { addToWishList() }}>
       <Image
         source={

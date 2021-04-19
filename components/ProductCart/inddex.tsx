@@ -36,12 +36,8 @@ const ProductCart: React.FC<IProductCartProps> = (props) => {
             style={[styles.prodRow, isLastItem && { borderBottomWidth: 0 }]}
             onPress={() => {
 
-                // Still In Working 
-
-                //   navigation.navigate('DetailScreen', {
-                //     product: product,
-                //   });
-
+                navigation?.push('Product', { Product: product })
+                
             }}>
 
             <Image
@@ -135,7 +131,7 @@ const styles = StyleSheet.create({
         // fontFamily: fonts.cairoBold,
         color: normalText,
         lineHeight: 27,
-        paddingHorizontal:5
+        paddingHorizontal: 5
     },
     prodImg: {
         width: screenWidth * 0.3,

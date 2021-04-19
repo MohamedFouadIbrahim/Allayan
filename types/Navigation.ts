@@ -1,4 +1,4 @@
-import { ICategory } from "./API"
+import { ICategory, IProduct } from "./API"
 
 export type CategoriesStacParamList = {
     Categories: {
@@ -11,7 +11,7 @@ export type ProductsStacParamList = {
         category: ICategory | null
     },
     Product: {
-        id: string
+        Product: IProduct
     }
 }
 

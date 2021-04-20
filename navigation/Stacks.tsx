@@ -1,14 +1,16 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import Categories from '../containers/Categories';
+import Favorites from '../containers/Favorites';
 import Home from '../containers/Home';
 import Product from '../containers/Product';
 import Products from '../containers/Products';
-import { CategoriesStacParamList, HomeStackParamList, ProductsStacParamList } from '../types/Navigation';
+import { CategoriesStacParamList, FavoritesStackParamList, HomeStackParamList, ProductsStacParamList } from '../types/Navigation';
 
 const CategoriesStackNavigator = createStackNavigator<CategoriesStacParamList>()
 const ProductsStackNavigator = createStackNavigator<ProductsStacParamList>()
 const HomeStackNavigator = createStackNavigator<HomeStackParamList>()
+const FavoritesStackNavigator = createStackNavigator<FavoritesStackParamList>()
 
 
 export const CategoriesStack = () => (
@@ -30,4 +32,12 @@ export const HomeStack = () => (
         <HomeStackNavigator.Screen name='Categories' component={CategoriesStack} />
         <HomeStackNavigator.Screen name='Products' component={ProductsStackStack} />
     </HomeStackNavigator.Navigator>
+)
+
+export const FavoritesStack = () => (
+    <FavoritesStackNavigator.Navigator headerMode='none' >
+        <FavoritesStackNavigator.Screen name='Favorites' component={Favorites} />
+        <ProductsStackNavigator.Screen name='Product' component={Product} />
+
+    </FavoritesStackNavigator.Navigator>
 )

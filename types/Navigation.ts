@@ -21,6 +21,13 @@ export type HomeStackParamList = {
     Products: ProductsStacParamList
 }
 
+export type FavoritesStackParamList = {
+    Favorites: undefined,
+    Products: ProductsStacParamList
+}
+
+
 export type MainTabBarParamList = {
-    HomeTab: undefined
+    HomeTab: undefined,
+    FavoritesTab: undefined
 }

@@ -8,18 +8,22 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { connect } from 'react-redux';
 import { normalText, secondColor } from '../../constants/Colors';
 import { screenWidth } from '../../constants/Page';
+import Actions from '../../redux/actions';
 import { IProduct } from '../../types/API';
+import { ISystemState } from '../../types/Redux';
 import AddToCartButtons from '../AddToCartButtons';
 import WishListIcon from '../WishListIcon';
-
 
 interface IProductCartProps {
     product: IProduct,
     isLastItem: boolean,
     index: string,
-    navigation?: StackNavigationProp<ParamListBase, string>
+    navigation?: StackNavigationProp<ParamListBase, string>,
+    addToFavorite?: (Product: IProduct) => void,
+    Products?: IProduct[]
 }
 
 const ProductCart: React.FC<IProductCartProps> = (props) => {
@@ -28,17 +32,20 @@ const ProductCart: React.FC<IProductCartProps> = (props) => {
         product,
         isLastItem,
         index,
-        navigation
+        navigation,
+        Products,
+        addToFavorite
     } = props;
+
+    const productIsAddedToFavorite = Products?.find(item => item.id == product.id)
 
     return (
         <TouchableOpacity
             style={[styles.prodRow, isLastItem && { borderBottomWidth: 0 }]}
             onPress={() => {
-
                 navigation?.push('Product', { Product: product })
-                
-            }}>
+            }}
+        >
 
             <Image
                 source={{ uri: product.image }}
@@ -68,10 +75,12 @@ const ProductCart: React.FC<IProductCartProps> = (props) => {
 
             </View>
 
-            <TouchableOpacity style={{}} onPress={() => { }}>
+            <TouchableOpacity
+                onPress={() => { addToFavorite && addToFavorite(product) }}
+            >
                 <WishListIcon
                     product={product}
-                    selected={false}
+                    selected={productIsAddedToFavorite ? true : false}
                 />
             </TouchableOpacity>
 
@@ -81,9 +90,25 @@ const ProductCart: React.FC<IProductCartProps> = (props) => {
 }
 
 
+const mapDispacthToProps = (dispatch: any) => {
+
+    const {
+        addToFavorite
+    } = Actions
+
+    return {
+        ...dispatch,
+        addToFavorite: (Product: IProduct) => addToFavorite(dispatch, Product)
+    };
+
+};
+
+const mapStateToProps = ({ Favotites: { Products } }: ISystemState) => ({
+    Products
+});
 
 
-export default ProductCart;
+export default connect(mapStateToProps, mapDispacthToProps)(ProductCart);
 
 const styles = StyleSheet.create({
     priceTag: {

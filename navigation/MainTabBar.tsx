@@ -6,7 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { blackColor, mainColor } from '../constants/Colors';
 import Fonts from '../constants/Fonts';
 import { MainTabBarParamList } from '../types/Navigation';
-import { FavoritesStack, HomeStack } from './Stacks';
+import { CartStack, FavoritesStack, HomeStack } from './Stacks';
 
 const TabNavigator = createBottomTabNavigator<MainTabBarParamList>();
 
@@ -33,6 +33,14 @@ export const MainTabBar = () => {
         }}
       />
 
+      <TabNavigator.Screen
+        name='CartTab'
+        component={CartStack}
+        options={{
+          tabBarIcon: ({ focused }) => <AntDesign name='shoppingcart' size={25} color={focused ? mainColor : blackColor} />,
+          tabBarLabel: ({ focused }) => <Text style={{ color: focused ? mainColor : blackColor, fontFamily: Fonts.tajawalBold }}  >{'Cart'}</Text>,
+        }}
+      />
     </TabNavigator.Navigator >
   )
 

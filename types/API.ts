@@ -13,3 +13,15 @@ export interface IProduct {
     price: number,
 
 }
+
+export interface IProductInCart {
+    productId: string,
+    quantity: number
+}
+
+export interface ICart {
+    id?: string
+    userId?: string
+    date: string,
+    products: IProductInCart[],
+}

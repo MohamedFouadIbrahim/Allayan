@@ -16,3 +16,19 @@ export const getProductsByCategory = (Category: ICategory, onSuccess?: (response
 
     }, onFailure)
 }
+
+export const getProducts = ( onSuccess?: (responseData: IProduct[]) => void, onFailure?: onFailureType) => {
+
+    GET(`products`, (response) => {
+
+        const mappedProducts: IProduct[] = response.data.map((item: IProduct, index: string) => (
+            {
+                ...item,
+                id: String(item.id)
+            }
+        ))
+
+        onSuccess && onSuccess(mappedProducts)
+
+    }, onFailure)
+}

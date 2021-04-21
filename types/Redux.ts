@@ -1,17 +1,30 @@
 import { AnyAction } from "redux";
-import { IProduct } from "./API";
+import { ICart, IProduct } from "./API";
 
 export interface IFavotitesInitialState {
     Products: IProduct[]
 }
 
-interface IAddToFavorites extends AnyAction {
+interface IAddToFavoritesAction extends AnyAction {
     type: string,
     Product?: IProduct
 }
 
 export type ISystemState = {
-    Favotites: IFavotitesInitialState
+    Favotites: IFavotitesInitialState,
+    Cart: ICartInitialState
 }
 
-export type FavoriteActionTypes = IAddToFavorites
+export interface ICartInitialState {
+    Cart: ICart
+}
+
+interface IAddToCartAction extends AnyAction {
+    type: string,
+    Cart: ICart
+}
+
+
+export type FavoriteActionTypes = IAddToFavoritesAction
+
+export type CartActionTypes = IAddToCartAction

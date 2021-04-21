@@ -27,7 +27,12 @@ export type FavoritesStackParamList = {
 }
 
 
+export type CartStackParamList = {
+    Cart: undefined
+}
+
 export type MainTabBarParamList = {
     HomeTab: undefined,
-    FavoritesTab: undefined
+    FavoritesTab: undefined,
+    CartTab: undefined
 }

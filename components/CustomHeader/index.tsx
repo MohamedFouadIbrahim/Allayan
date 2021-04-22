@@ -19,7 +19,7 @@ interface ICustomHeaderProps extends ViewProps {
   back?: boolean,
   onBack?: () => void,
   title?: string,
-  logo?: boolean
+  logo?: boolean,
 }
 
 const CustomHeader: React.FC<ICustomHeaderProps> = (props) => {
@@ -95,7 +95,9 @@ const CustomHeader: React.FC<ICustomHeaderProps> = (props) => {
               paddingLeft: 10,
               zIndex: 150000,
             }}
-            onPress={() => { }}
+            onPress={() => { 
+              navigation.navigate('CartTab')
+            }}
           >
 
             {/* <CartIcon

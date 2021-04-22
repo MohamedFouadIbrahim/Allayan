@@ -33,6 +33,9 @@ const CartCard: React.FC<ICartCardProps> = (props) => {
             closeOnRowPress
             useNativeDriver
             preview
+            style={{
+                marginVertical: PagePadding
+            }}
         >
             <View style={styles.hiddenRow}>
                 <TouchableOpacity

@@ -24,7 +24,12 @@ interface IAddToCartAction extends AnyAction {
     Cart: ICart
 }
 
+interface IRemoveFromCartAction extends AnyAction {
+    type: string,
+    Product: IProduct
+}
+
 
 export type FavoriteActionTypes = IAddToFavoritesAction
 
-export type CartActionTypes = IAddToCartAction
+export type CartActionTypes = IAddToCartAction | IRemoveFromCartAction

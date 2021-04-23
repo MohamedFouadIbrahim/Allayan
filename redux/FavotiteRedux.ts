@@ -23,6 +23,7 @@ export const reducer = (state = initialState, action: FavoriteActionTypes) => {
     switch (type) {
 
         case types.ADD_TO_FAVORITE:
+            
             const ProductAlreadyinCart = state.Products.find(item => item.id == Product?.id)
 
             if (ProductAlreadyinCart) {

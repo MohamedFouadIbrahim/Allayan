@@ -7,21 +7,21 @@ import { useDispatch } from 'react-redux';
 interface IWishListIcon extends TouchableOpacityProps {
   product: IProduct,
   selected: boolean,
-  onAddFavourite?: () => void
+  onAddFavourite?: () => void,
+  t?: any
 }
 
 const WishListIcon: React.FC<IWishListIcon> = (props) => {
 
-  const { product, selected, onAddFavourite, style, ...restProps } = props;
+  const { product, selected, onAddFavourite, t, style, ...restProps } = props;
+
+  const dispatch = useDispatch()
 
   const addToWishList = () => {
-
-    const dispatch = useDispatch()
-    
     Action.addToFavorite(dispatch, product)
-
     onAddFavourite && onAddFavourite()
   }
+  
   return (
     <TouchableOpacity
       style={[styles.favouriteBtn, style]}

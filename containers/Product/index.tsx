@@ -2,7 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CustomHeader from '../../components/CustomHeader';
 import CustomImage from '../../components/CustomImage';
 import LazyContainer from '../../components/LazyContainer';
@@ -11,14 +11,15 @@ import { mainColor, whiteColor } from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 import { largePagePadding, screenHeight, screenWidth } from '../../constants/Page';
 import { ProductsStacParamList } from '../../types/Navigation';
-import Action from '../../redux/actions';
+import { IFavotitesInitialState, ISystemState } from '../../types/Redux';
 interface IProductProps extends StackScreenProps<ProductsStacParamList, 'Product'> {
 }
 
 
 const Product: React.FC<IProductProps> = (props) => {
 
-    const dispatch = useDispatch()
+    const Favotites = useSelector<ISystemState>((state) => state.Favotites) as IFavotitesInitialState
+
 
     const {
         route: {
@@ -27,6 +28,9 @@ const Product: React.FC<IProductProps> = (props) => {
             }
         }
     } = props
+
+
+    const currentProduct = Favotites.Products.find(item => item.id == Product.id)
 
     return (
         <LazyContainer
@@ -50,7 +54,8 @@ const Product: React.FC<IProductProps> = (props) => {
                 >
                     <WishListIcon
                         product={Product}
-                        selected={false}
+                        selected={currentProduct ? true : false}
+                        // t={currentProduct}
                         style={styles.wishIcon}
                     />
                 </ImageBackground>

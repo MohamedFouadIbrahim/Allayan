@@ -3,10 +3,12 @@ import { I18nManager, ListRenderItemInfo, StyleSheet, Text, TouchableOpacity, Vi
 import { FlatList } from 'react-native-gesture-handler';
 import { SwipeRow } from 'react-native-swipe-list-view';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { whiteColor } from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 import { PagePadding } from '../../constants/Page';
 import { IProduct, IProductInCart } from '../../types/API';
+import { CartActionTypes, ICartInitialState, ISystemState } from '../../types/Redux';
 import CustomImage from '../CustomImage';
 
 interface ICartCardProps {
@@ -22,6 +24,8 @@ const CartCard: React.FC<ICartCardProps> = (props) => {
     } = props
 
     const currentProductsInCart = Products.filter(item => item.id == CartItem.productId);
+
+    const dispatch = useDispatch() // using Hooks without connect
 
     const renderProductsInCart = ({ item, index }: ListRenderItemInfo<IProduct>) => (
 
@@ -39,7 +43,9 @@ const CartCard: React.FC<ICartCardProps> = (props) => {
         >
             <View style={styles.hiddenRow}>
                 <TouchableOpacity
-                    onPress={() => { }}
+                    onPress={() => {
+                        dispatch({ type: 'REMOVE_FROM_CART', Product: item }) //using Hooks without connect
+                    }}
                 >
                     <FontAwesome name="trash" size={30} color={'red'} />
                 </TouchableOpacity>

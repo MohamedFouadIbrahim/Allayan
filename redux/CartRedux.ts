@@ -89,7 +89,7 @@ export const reducer = (state = initialState, action: CartActionTypes) => {
                 ...state,
                 Cart: {
                     ...state.Cart,
-                    products: state.Cart.products.filter(item => item.productId == Product.id)
+                    products: state.Cart.products.filter(item => item.productId != Product.id)
                 }
             }
 

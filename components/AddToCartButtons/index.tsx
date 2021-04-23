@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 interface IAddToCartButtonsProps {
   product: IProduct,
   addToCart?: (product: IProduct, quantity: number) => void,
-  Cart: ICart,
+  Cart?: ICart,
   removeFromCart?: (product: IProduct) => void
 
 }
@@ -25,7 +25,7 @@ const AddToCartButtons: React.FC<IAddToCartButtonsProps> = (props) => {
     removeFromCart
   } = props
 
-  const [quantity, setQuantity] = useState<number>(Cart.products.find(item => item.productId == product.id)?.quantity! | 0)
+  const [quantity, setQuantity] = useState<number>(Cart?.products.find(item => item.productId == product.id)?.quantity! | 0)
 
   return (
     <View style={styles.btnsContainer}>
@@ -49,7 +49,7 @@ const AddToCartButtons: React.FC<IAddToCartButtonsProps> = (props) => {
       </TouchableOpacity>
 
       <Text style={styles.counterStyle} allowFontScaling={false}>
-        {quantity}
+        {Cart?.products.find(item => item.productId == product.id)?.quantity! | 0}
       </Text>
 
       <TouchableOpacity

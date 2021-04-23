@@ -14,6 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { mainColor, whiteColor } from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
+import CartIcon from '../CartIcon';
 
 interface ICustomHeaderProps extends ViewProps {
   back?: boolean,
@@ -100,23 +101,9 @@ const CustomHeader: React.FC<ICustomHeaderProps> = (props) => {
             }}
           >
 
-            {/* <CartIcon
-              style={{
-                tintColor: whiteColor,
-                width: 25,
-                height: 25,
-              }}
-            /> */}
-            <Image
-              source={require('../../assets/Images/buy.png')}
-              style={{
-                width: 25,
-                height: 25,
-                resizeMode: 'contain',
-                tintColor: mainColor,
-              }}
-            />
+            <CartIcon />
           </TouchableOpacity>
+          
         </View>
       </View>
 

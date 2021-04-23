@@ -2,6 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
 import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useDispatch } from 'react-redux';
 import CustomHeader from '../../components/CustomHeader';
 import CustomImage from '../../components/CustomImage';
 import LazyContainer from '../../components/LazyContainer';
@@ -10,12 +11,14 @@ import { mainColor, whiteColor } from '../../constants/Colors';
 import Fonts from '../../constants/Fonts';
 import { largePagePadding, screenHeight, screenWidth } from '../../constants/Page';
 import { ProductsStacParamList } from '../../types/Navigation';
-
+import Action from '../../redux/actions';
 interface IProductProps extends StackScreenProps<ProductsStacParamList, 'Product'> {
 }
 
 
 const Product: React.FC<IProductProps> = (props) => {
+
+    const dispatch = useDispatch()
 
     const {
         route: {
@@ -92,7 +95,9 @@ const Product: React.FC<IProductProps> = (props) => {
 
             <TouchableOpacity
                 style={styles.addToCartBtn}
-                onPress={() => { }}
+                onPress={() => {
+                    // Action.addToCart(dispatch, Product, 1)
+                }}
             >
 
                 <View style={{ flexDirection: 'row' }}>

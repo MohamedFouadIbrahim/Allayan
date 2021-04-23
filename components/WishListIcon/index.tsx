@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, TouchableOpacityProps } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { IProduct } from '../../types/API';
-
+import Action from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 interface IWishListIcon extends TouchableOpacityProps {
   product: IProduct,
   selected: boolean,
@@ -14,6 +15,10 @@ const WishListIcon: React.FC<IWishListIcon> = (props) => {
   const { product, selected, onAddFavourite, style, ...restProps } = props;
 
   const addToWishList = () => {
+
+    const dispatch = useDispatch()
+    
+    Action.addToFavorite(dispatch, product)
 
     onAddFavourite && onAddFavourite()
   }

@@ -5,6 +5,7 @@ import configure from './configure';
 export const types = {
     ADD_TO_CART: 'ADD_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+    Empty_Cart: 'Empty_Cart',
 };
 
 const productInCart = (Cart: ICart, Product: IProduct): boolean => {
@@ -56,6 +57,11 @@ export const actions = {
             type: types.REMOVE_FROM_CART,
             Product
         })
+    },
+    emptyCart: (dispatch: any) => {
+        dispatch({
+            type: types.Empty_Cart
+        })
     }
 
 };
@@ -90,6 +96,15 @@ export const reducer = (state = initialState, action: CartActionTypes) => {
                 Cart: {
                     ...state.Cart,
                     products: state.Cart.products.filter(item => item.productId != Product.id)
+                }
+            }
+
+        case types.Empty_Cart:
+
+            return {
+                ...state,
+                Cart: {
+                    ...initialState.Cart
                 }
             }
 

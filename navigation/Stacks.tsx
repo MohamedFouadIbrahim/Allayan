@@ -4,15 +4,17 @@ import Cart from '../containers/Cart';
 import Categories from '../containers/Categories';
 import Favorites from '../containers/Favorites';
 import Home from '../containers/Home';
+import Login from '../containers/Login';
 import Product from '../containers/Product';
 import Products from '../containers/Products';
-import { CartStackParamList, CategoriesStacParamList, FavoritesStackParamList, HomeStackParamList, ProductsStacParamList } from '../types/Navigation';
+import { AuthStackParamList, CartStackParamList, CategoriesStacParamList, FavoritesStackParamList, HomeStackParamList, ProductsStacParamList } from '../types/Navigation';
 
 const CategoriesStackNavigator = createStackNavigator<CategoriesStacParamList>()
 const ProductsStackNavigator = createStackNavigator<ProductsStacParamList>()
 const HomeStackNavigator = createStackNavigator<HomeStackParamList>()
 const FavoritesStackNavigator = createStackNavigator<FavoritesStackParamList>()
 const CartStackNavigator = createStackNavigator<CartStackParamList>()
+const AuthStackNavigator = createStackNavigator<AuthStackParamList>()
 
 
 export const CategoriesStack = () => (
@@ -47,4 +49,10 @@ export const CartStack = () => (
     <CartStackNavigator.Navigator headerMode='none' >
         <CartStackNavigator.Screen name='Cart' component={Cart} />
     </CartStackNavigator.Navigator>
+)
+
+export const AuthStack = () => (
+    <AuthStackNavigator.Navigator headerMode='none' >
+        <AuthStackNavigator.Screen name='Login' component={Login} />
+    </AuthStackNavigator.Navigator>
 )

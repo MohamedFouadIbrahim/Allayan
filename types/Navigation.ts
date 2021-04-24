@@ -31,6 +31,12 @@ export type CartStackParamList = {
     Cart: undefined
 }
 
+export type AuthStackParamList = {
+    Login: undefined,
+    Registration: undefined,
+}
+
+
 export type MainTabBarParamList = {
     HomeTab: undefined,
     FavoritesTab: undefined,

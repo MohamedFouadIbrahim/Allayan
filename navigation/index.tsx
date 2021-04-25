@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import { SafeAreaView } from 'react-native';
+import MainDrawer from './MainDrawer';
 import { MainTabBar } from './MainTabBar';
 import { AuthStack } from './Stacks';
 
@@ -12,7 +13,8 @@ export const AppNavigation: React.FC<IAppNavigationProps> = (props) => {
 
         <NavigationContainer>
             <SafeAreaView />
-            <MainTabBar />
+            <MainDrawer />
+            {/* <MainTabBar /> */}
             {/* <AuthStack /> */}
         </NavigationContainer>
     )

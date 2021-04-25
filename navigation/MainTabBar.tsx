@@ -10,7 +10,7 @@ import { CartStack, FavoritesStack, HomeStack } from './Stacks';
 
 const TabNavigator = createBottomTabNavigator<MainTabBarParamList>();
 
-export const MainTabBar = () => {
+export const MainTabBar = (props:any) => {
 
   return (
     <TabNavigator.Navigator>

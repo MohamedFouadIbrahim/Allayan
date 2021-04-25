@@ -42,3 +42,8 @@ export type MainTabBarParamList = {
     FavoritesTab: undefined,
     CartTab: undefined
 }
+
+
+export type MainDrawerParamList = {
+    HomeDrawer: undefined,
+}

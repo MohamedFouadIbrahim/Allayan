@@ -2,6 +2,7 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { DrawerAnimationProvider } from './context/Drawer';
 import { AppNavigation } from './navigation';
 import configureStore from './redux/configure';
 
@@ -16,11 +17,14 @@ const App = () => {
 
       <PersistGate
         loading={null}
-        onBeforeLift={() => {}}
+        onBeforeLift={() => { }}
         persistor={persistor}>
       </PersistGate>
 
-      <AppNavigation />
+      <DrawerAnimationProvider>
+        <AppNavigation />
+      </DrawerAnimationProvider>
+      
     </Provider>
   );
 

@@ -26,12 +26,6 @@ const DrawerContent = (props: DrawerContentComponentProps<DrawerContentOptions>)
                 onPress={() => navigation.navigate('HomeDrawer')}
             />
 
-            <DrawerItem
-                label='hiii'
-                onPress={() => navigation.navigate('HomeDrawer')}
-            />
-
-
         </DrawerContentScrollView>
     )
 }
